@@ -7,12 +7,15 @@ type MainFilmCard = {
   year: number;
 };
 
+const SMALL_FILM_CARDS_AMOUNT = 20;
 
 type MainScreenProps = {
   mainFilmCard: MainFilmCard;
 }
 
 function MainScreen({mainFilmCard}: MainScreenProps): JSX.Element {
+  const array = new Array(SMALL_FILM_CARDS_AMOUNT).fill('');
+
   return (
     <>
       <section className="film-card">
@@ -113,7 +116,9 @@ function MainScreen({mainFilmCard}: MainScreenProps): JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
-            <SmallFilmCard />
+            {array.map((card) => (
+              <SmallFilmCard key={`card-${card}`} />
+            ))}
           </div>
 
           <div className="catalog__more">
