@@ -2,6 +2,7 @@ import Logo from '../logo/logo';
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
+import Footer from '../footer/footer';
 
 function NotFoundPage(): JSX.Element {
   return (
@@ -34,13 +35,7 @@ function NotFoundPage(): JSX.Element {
       </section>
 
       <div className="page-content">
-        <footer className="page-footer">
-          <Logo team="light" />
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </>
   );

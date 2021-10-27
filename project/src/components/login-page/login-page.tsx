@@ -1,5 +1,6 @@
 import Logo from '../logo/logo';
 import React from 'react';
+import Footer from '../footer/footer';
 
 function LoginPage(): JSX.Element {
   return (
@@ -28,13 +29,7 @@ function LoginPage(): JSX.Element {
         </form>
       </div>
 
-      <footer className="page-footer">
-        <Logo team={'light'} />
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
