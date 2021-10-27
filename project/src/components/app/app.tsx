@@ -1,51 +1,41 @@
-import MainScreen from '../main-screen/main-screen';
+import MainPage from '../main-page/main-page';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
-import MyListscreen from '../my-list-screen/my-list-screen';
-import LoginScreen from '../login-screen/login-screen';
-import FilmScreen from '../film-screen/film-screen';
-import ReviewScreen from '../review-screen/review-screen';
-import NotFoundScreen from '../not-found-screen/not-found-screen';
+import MyListPage from '../my-list-page/my-list-page';
+import LoginPage from '../login-page/login-page';
+import FilmPage from '../film-page/film-page';
+import ReviewPage from '../review-page/review-page';
+import NotFoundPage from '../not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
+import {MainPageProps} from '../../types/types';
 
-type MainFilmCard = {
-  title: string;
-  genre: string;
-  year: number;
-};
-
-
-type AppProps = {
-  mainFilmCard: MainFilmCard;
-}
-
-function App({mainFilmCard}: AppProps): JSX.Element {
+function App({mainFilmCard}: MainPageProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Root}>
-          <MainScreen mainFilmCard={mainFilmCard} />
+          <MainPage mainFilmCard={mainFilmCard} />
         </Route>
         <PrivateRoute
           exact
           path={AppRoute.MyList}
-          render={() => <MyListscreen />}
+          render={() => <MyListPage />}
           authorizationStatus={AuthorizationStatus.NoAuth}
         />
         <Route exact path={AppRoute.Login}>
-          <LoginScreen />
+          <LoginPage />
         </Route>
         <Route exact path={AppRoute.Film}>
-          <FilmScreen />
+          <FilmPage />
         </Route>
         <PrivateRoute
           exact
           path={AppRoute.Review}
-          render={() => <ReviewScreen />}
+          render={() => <ReviewPage />}
           authorizationStatus={AuthorizationStatus.NoAuth}
         />
         <Route>
-          <NotFoundScreen />
+          <NotFoundPage />
         </Route>
       </Switch>
     </BrowserRouter>

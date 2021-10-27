@@ -1,7 +1,7 @@
 import Logo from '../logo/logo';
 import React from 'react';
 
-function ReviewScreen(): JSX.Element {
+function ReviewPage(): JSX.Element {
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
@@ -92,4 +92,4 @@ function ReviewScreen(): JSX.Element {
   );
 }
 
-export default ReviewScreen;
+export default ReviewPage;

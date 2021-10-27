@@ -1,20 +1,11 @@
 import React from 'react';
 import SmallFilmCard from '../small-film-card/small-film-card';
 import Logo from '../logo/logo';
-
-type MainFilmCard = {
-  title: string;
-  genre: string;
-  year: number;
-};
+import {MainPageProps} from '../../types/types';
 
 const SMALL_FILM_CARDS_AMOUNT = 20;
 
-type MainScreenProps = {
-  mainFilmCard: MainFilmCard;
-}
-
-function MainScreen({mainFilmCard}: MainScreenProps): JSX.Element {
+function MainPage({mainFilmCard}: MainPageProps): JSX.Element {
   const array = new Array(SMALL_FILM_CARDS_AMOUNT).fill('');
 
   return (
@@ -133,4 +124,4 @@ function MainScreen({mainFilmCard}: MainScreenProps): JSX.Element {
   );
 }
 
-export default MainScreen;
+export default MainPage;

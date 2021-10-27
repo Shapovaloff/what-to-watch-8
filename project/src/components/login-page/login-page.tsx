@@ -1,7 +1,7 @@
 import Logo from '../logo/logo';
 import React from 'react';
 
-function LoginScreen(): JSX.Element {
+function LoginPage(): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -39,4 +39,4 @@ function LoginScreen(): JSX.Element {
   );
 }
 
-export default LoginScreen;
+export default LoginPage;
