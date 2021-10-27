@@ -1,13 +1,19 @@
 import Logo from '../logo/logo';
 import React from 'react';
 import {Film} from '../../types/film';
+import {useHistory} from 'react-router-dom';
 
 type FilmCardMainProps = {
   film: Film;
 }
 
 function FilmCardMain({film}: FilmCardMainProps): JSX.Element {
-  const {backgroundImage, posterImage, name, genre, released} = film;
+  const {backgroundImage, posterImage, name, genre, released, id} = film;
+  const history = useHistory();
+
+  const clickPlayBtnHandler = () => {
+    history.push(`/film/${id}`);
+  };
 
   return (
     <section className="film-card">
@@ -46,13 +52,20 @@ function FilmCardMain({film}: FilmCardMainProps): JSX.Element {
             </p>
 
             <div className="film-card__buttons">
-              <button className="btn btn--play film-card__button" type="button">
+              <button
+                className="btn btn--play film-card__button"
+                type="button"
+                onClick={clickPlayBtnHandler}
+              >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"/>
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list film-card__button" type="button">
+              <button
+                className="btn btn--list film-card__button"
+                type="button"
+              >
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add" />
                 </svg>

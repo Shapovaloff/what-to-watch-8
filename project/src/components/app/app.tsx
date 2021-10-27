@@ -31,7 +31,7 @@ function App({films}: AppProps): JSX.Element {
           <LoginPage />
         </Route>
         <Route exact path={AppRoute.Film}>
-          <FilmPage />
+          <FilmPage films={films} />
         </Route>
         <PrivateRoute
           exact
