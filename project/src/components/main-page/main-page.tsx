@@ -1,7 +1,7 @@
 import React from 'react';
-import SmallFilmCard from '../small-film-card/small-film-card';
 import Logo from '../logo/logo';
 import {Film} from '../../types/film';
+import CatalogFilmsList from '../catalog-films-list/catalog-films-list';
 
 type MainPageProps = {
   films: Film[];
@@ -103,11 +103,7 @@ function MainPage({films}: MainPageProps): JSX.Element {
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            {films.map((film) => (
-              <SmallFilmCard key={`card-${film.id}`} />
-            ))}
-          </div>
+          <CatalogFilmsList films={films} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
