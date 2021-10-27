@@ -7,14 +7,19 @@ import FilmPage from '../film-page/film-page';
 import ReviewPage from '../review-page/review-page';
 import NotFoundPage from '../not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
-import {MainPageProps} from '../../types/types';
+import {Film} from '../../types/film';
 
-function App({mainFilmCard}: MainPageProps): JSX.Element {
+type AppProps = {
+  films: Film[];
+}
+
+function App({films}: AppProps): JSX.Element {
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Root}>
-          <MainPage mainFilmCard={mainFilmCard} />
+          <MainPage films={films} />
         </Route>
         <PrivateRoute
           exact

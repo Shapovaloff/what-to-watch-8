@@ -1,12 +1,14 @@
 import React from 'react';
 import SmallFilmCard from '../small-film-card/small-film-card';
 import Logo from '../logo/logo';
-import {MainPageProps} from '../../types/types';
+import {Film} from '../../types/film';
 
-const SMALL_FILM_CARDS_AMOUNT = 20;
+type MainPageProps = {
+  films: Film[];
+}
 
-function MainPage({mainFilmCard}: MainPageProps): JSX.Element {
-  const array = new Array(SMALL_FILM_CARDS_AMOUNT).fill('');
+function MainPage({films}: MainPageProps): JSX.Element {
+  const promoFilm = films[1];
 
   return (
     <>
@@ -39,10 +41,10 @@ function MainPage({mainFilmCard}: MainPageProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{mainFilmCard.title}</h2>
+              <h2 className="film-card__title">{promoFilm.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{mainFilmCard.genre}</span>
-                <span className="film-card__year">{mainFilmCard.year}</span>
+                <span className="film-card__genre">{promoFilm.genre}</span>
+                <span className="film-card__year">{promoFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -102,8 +104,8 @@ function MainPage({mainFilmCard}: MainPageProps): JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
-            {array.map((card) => (
-              <SmallFilmCard key={`card-${card}`} />
+            {films.map((film) => (
+              <SmallFilmCard key={`card-${film.id}`} />
             ))}
           </div>
 

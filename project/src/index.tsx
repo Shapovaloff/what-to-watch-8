@@ -1,15 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
-
-const mainFilmCard = {
-  title: 'The Grand Budapest Hotel',
-  genre: 'Drama',
-  year: 2014,
-};
+import {films} from './moks/films';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App mainFilmCard={mainFilmCard} />
+    <App films={films} />
   </React.StrictMode>,
   document.getElementById('root'));
