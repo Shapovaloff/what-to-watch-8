@@ -4,20 +4,23 @@ import Footer from '../footer/footer';
 import {useParams} from 'react-router-dom';
 import {Film} from '../../types/film';
 import {getFilm} from '../../utils';
-import FilmCardNav from '../film-card-nav/film-card-nav';
+import CatalogFilmsList from '../catalog-films-list/catalog-films-list';
+import {Comment} from '../../types/comment';
+import FilmCardDesc from '../film-card-desc/film-card-desc';
 
 type FilmPageProps = {
   films: Film[];
+  comments: Comment[];
 }
 
-function FilmPage({films}: FilmPageProps): JSX.Element {
+function FilmPage({films, comments}: FilmPageProps): JSX.Element {
   const {id} = useParams<{id: string}>();
   const film = getFilm(films, Number(id));
+  const filmsSimilar = films.slice(0, 4);
+
   const {
     posterImage, name, backgroundImage,
-    genre, released, rating,
-    description, director, starring,
-    scoresCount, backgroundColor,
+    genre, released, backgroundColor,
   } = film;
 
   return (
@@ -78,25 +81,7 @@ function FilmPage({films}: FilmPageProps): JSX.Element {
               <img src={posterImage} alt="The Grand Budapest Hotel poster" width="218" height="327" />
             </div>
 
-            <div className="film-card__desc">
-              <FilmCardNav />
-
-              <div className="film-rating">
-                <div className="film-rating__score">{rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">{scoresCount} ratings</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                <p>{description}</p>
-                <p className="film-card__director"><strong>Director: {director}</strong></p>
-                <p className="film-card__starring">
-                  <strong>Starring: {starring.join(', ')}</strong>
-                </p>
-              </div>
-            </div>
+            <FilmCardDesc film={film} comments={comments} />
           </div>
         </div>
       </section>
@@ -105,43 +90,7 @@ function FilmPage({films}: FilmPageProps): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <div className="catalog__films-list">
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Macbeth</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Aviator</a>
-              </h3>
-            </article>
-          </div>
+          <CatalogFilmsList films={filmsSimilar} />
         </section>
 
         <Footer />

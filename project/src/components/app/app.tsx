@@ -8,12 +8,14 @@ import ReviewPage from '../review-page/review-page';
 import NotFoundPage from '../not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import {Film} from '../../types/film';
+import {Comment} from '../../types/comment';
 
 type AppProps = {
   films: Film[];
+  comments: Comment[];
 }
 
-function App({films}: AppProps): JSX.Element {
+function App({films, comments}: AppProps): JSX.Element {
 
   return (
     <BrowserRouter>
@@ -31,7 +33,7 @@ function App({films}: AppProps): JSX.Element {
           <LoginPage />
         </Route>
         <Route exact path={AppRoute.Film}>
-          <FilmPage films={films} />
+          <FilmPage films={films} comments={comments}/>
         </Route>
         <PrivateRoute
           exact
