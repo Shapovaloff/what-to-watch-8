@@ -27,7 +27,7 @@ function App({films, comments}: AppProps): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.MyList}
-          render={() => <MyListPage />}
+          render={() => <MyListPage films={films} />}
           authorizationStatus={AuthorizationStatus.Auth}
         />
         <Route exact path={AppRoute.Login}>
