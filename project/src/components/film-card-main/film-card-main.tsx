@@ -2,6 +2,7 @@ import Logo from '../logo/logo';
 import React from 'react';
 import {Film} from '../../types/film';
 import {useHistory} from 'react-router-dom';
+import UserBlock from '../user-block/user-block';
 
 type FilmCardMainProps = {
   film: Film;
@@ -12,7 +13,7 @@ function FilmCardMain({film}: FilmCardMainProps): JSX.Element {
   const history = useHistory();
 
   const clickPlayBtnHandler = () => {
-    history.push(`/film/${id}`);
+    history.push(`/player/${id}`);
   };
 
   return (
@@ -26,16 +27,7 @@ function FilmCardMain({film}: FilmCardMainProps): JSX.Element {
       <header className="page-header film-card__head">
         <Logo />
 
-        <ul className="user-block">
-          <li className="user-block__item">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-            </div>
-          </li>
-          <li className="user-block__item">
-            <a className="user-block__link">Sign out</a>
-          </li>
-        </ul>
+        <UserBlock />
       </header>
 
       <div className="film-card__wrap">

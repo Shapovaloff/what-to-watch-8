@@ -1,9 +1,27 @@
-function PlayerPage(): JSX.Element {
+import {useHistory, useParams} from 'react-router-dom';
+import {Film} from '../../types/film';
+import {getFilm} from '../../utils';
+import {Params} from '../../types/types';
+
+type PlayerPageProps = {
+  films: Film[];
+}
+
+function PlayerPage({films}: PlayerPageProps): JSX.Element {
+  const {id} = useParams() as Params;
+  const film = getFilm(films, Number(id));
+  const {posterImage} = film;
+  const history = useHistory();
+
+  const handleButtonClick = () => {
+    history.goBack();
+  };
+
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src="#" className="player__video" poster={posterImage} />
 
-      <button type="button" className="player__exit">Exit</button>
+      <button type="button" className="player__exit" onClick={handleButtonClick}>Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">
@@ -17,15 +35,15 @@ function PlayerPage(): JSX.Element {
         <div className="player__controls-row">
           <button type="button" className="player__play">
             <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
+              <use xlinkHref="#play-s" />
             </svg>
             <span>Play</span>
           </button>
           <div className="player__name">Transpotting</div>
 
-          <button type="button" className="player__full-screen">
+          <button type="button" className="player__full-screen" >
             <svg viewBox="0 0 27 27" width="27" height="27">
-              <use xlinkHref="#full-screen"></use>
+              <use xlinkHref="#full-screen" />
             </svg>
             <span>Full screen</span>
           </button>

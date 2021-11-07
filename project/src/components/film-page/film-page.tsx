@@ -7,6 +7,8 @@ import {getFilm} from '../../utils';
 import CatalogFilmsList from '../catalog-films-list/catalog-films-list';
 import {Comment} from '../../types/comment';
 import FilmCardDesc from '../film-card-desc/film-card-desc';
+import {Params} from '../../types/types';
+import UserBlock from '../user-block/user-block';
 
 type FilmPageProps = {
   films: Film[];
@@ -14,7 +16,7 @@ type FilmPageProps = {
 }
 
 function FilmPage({films, comments}: FilmPageProps): JSX.Element {
-  const {id} = useParams<{id: string}>();
+  const {id} = useParams() as Params;
   const film = getFilm(films, Number(id));
   const filmsSimilar = films.slice(0, 4);
 
@@ -36,16 +38,7 @@ function FilmPage({films, comments}: FilmPageProps): JSX.Element {
           <header className="page-header film-card__head">
             <Logo />
 
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                </div>
-              </li>
-              <li className="user-block__item">
-                <a className="user-block__link">Sign out</a>
-              </li>
-            </ul>
+            <UserBlock />
           </header>
 
           <div className="film-card__wrap">

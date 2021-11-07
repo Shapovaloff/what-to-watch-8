@@ -1,10 +1,6 @@
 import React, {SyntheticEvent, useState} from 'react';
 import {Genres} from '../../const';
 
-// type CatalogGenresListProps = {
-//   activeGenre: string;
-// }
-
 function CatalogGenresList(): JSX.Element {
   const [activeGenre, setActiveGenre] = useState(Genres[0]);
 

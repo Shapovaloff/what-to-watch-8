@@ -9,6 +9,7 @@ import NotFoundPage from '../not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import {Film} from '../../types/film';
 import {Comment} from '../../types/comment';
+import PlayerPage from '../player-page/player-page';
 
 type AppProps = {
   films: Film[];
@@ -27,7 +28,7 @@ function App({films, comments}: AppProps): JSX.Element {
           exact
           path={AppRoute.MyList}
           render={() => <MyListPage />}
-          authorizationStatus={AuthorizationStatus.NoAuth}
+          authorizationStatus={AuthorizationStatus.Auth}
         />
         <Route exact path={AppRoute.Login}>
           <LoginPage />
@@ -41,6 +42,9 @@ function App({films, comments}: AppProps): JSX.Element {
           render={() => <ReviewPage />}
           authorizationStatus={AuthorizationStatus.NoAuth}
         />
+        <Route exact path={AppRoute.Player}>
+          <PlayerPage films={films} />
+        </Route>
         <Route>
           <NotFoundPage />
         </Route>
