@@ -3,15 +3,13 @@ import React from 'react';
 import Footer from '../../footer/footer';
 import UserBlock from '../../user-block/user-block';
 import {Film} from '../../../types/film';
-import SmallFilmCard from '../../small-film-card/small-film-card';
+import CatalogFilmsList from '../../catalog-films-list/catalog-films-list';
 
 type MyListPageProps = {
   films: Film[];
 }
 
 function MyListPage({films}: MyListPageProps): JSX.Element {
-  const filmFavorites = films.slice().filter((film: Film) => film.isFavorite);
-
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -23,11 +21,7 @@ function MyListPage({films}: MyListPageProps): JSX.Element {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <div className="catalog__films-list">
-          {filmFavorites.map((film) => (
-            <SmallFilmCard key={film.id} film={film} />
-          ))}
-        </div>
+        <CatalogFilmsList films={films} />
       </section>
 
       <Footer />

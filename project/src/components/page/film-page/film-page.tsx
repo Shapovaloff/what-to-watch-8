@@ -1,7 +1,7 @@
 import Logo from '../../logo/logo';
 import React from 'react';
 import Footer from '../../footer/footer';
-import {Link, useHistory, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {Film} from '../../../types/film';
 import {getFilm} from '../../../utils';
 import CatalogFilmsList from '../../catalog-films-list/catalog-films-list';
@@ -9,6 +9,9 @@ import {Comment} from '../../../types/comment';
 import FilmCardDesc from '../../film-card-desc/film-card-desc';
 import {Params} from '../../../types/types';
 import UserBlock from '../../user-block/user-block';
+import FilmCardBg from '../../film-card-bg/film-card-bg';
+import FilmCardButtons from '../../film-card-buttons/film-card-buttons';
+import FilmCardPoster from '../../film-card-poster/film-card-poster';
 
 type FilmPageProps = {
   films: Film[];
@@ -19,7 +22,6 @@ function FilmPage({films, comments}: FilmPageProps): JSX.Element {
   const {id} = useParams() as Params;
   const film = getFilm(films, Number(id));
   const filmsSimilar = films.slice(0, 4);
-  const history = useHistory();
 
   const {
     posterImage, name, backgroundImage,
@@ -27,20 +29,12 @@ function FilmPage({films, comments}: FilmPageProps): JSX.Element {
     isFavorite,
   } = film;
 
-  const handleButtonClick = () => {
-    history.push(`/player/${id}`);
-  };
-
   return (
     <>
       <section className="film-card film-card--full" style={{backgroundColor: backgroundColor}}>
         <div className="film-card__hero">
-          <div className="film-card__bg">
-            <img src={backgroundImage} alt={name} />
-          </div>
-
+          <FilmCardBg backgroundImage={backgroundImage} name={name} />
           <h1 className="visually-hidden">WTW</h1>
-
           <header className="page-header film-card__head">
             <Logo />
             <UserBlock />
@@ -54,31 +48,14 @@ function FilmPage({films, comments}: FilmPageProps): JSX.Element {
                 <span className="film-card__year">{released}</span>
               </p>
 
-              <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button" onClick={handleButtonClick}>
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref={isFavorite ? '#in-list' : '#add'}></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <Link to={`/film/${id}/review`} className="btn film-card__button">Add review</Link>
-              </div>
+              <FilmCardButtons isFavorite={isFavorite} isAddReview id={id} />
             </div>
           </div>
         </div>
 
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
-            <div className="film-card__poster film-card__poster--big">
-              <img src={posterImage} alt="The Grand Budapest Hotel poster" width="218" height="327" />
-            </div>
-
+            <FilmCardPoster posterImage={posterImage} name={name} posterSize={'big'} />
             <FilmCardDesc film={film} comments={comments} />
           </div>
         </div>

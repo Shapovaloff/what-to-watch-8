@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {Film} from '../../types/film';
 import {getTimeToString} from '../../utils';
 
@@ -8,6 +8,7 @@ type FilmDetailsProps = {
 
 function FilmDetails({film}: FilmDetailsProps): JSX.Element {
   const {director, starring, genre, released, runTime} = film;
+  const starringList = starring.map((item) => <Fragment key={item}>{item} <br /></Fragment>);
 
   return (
     <div className="film-card__text film-card__row">
@@ -18,7 +19,7 @@ function FilmDetails({film}: FilmDetailsProps): JSX.Element {
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
-          <span className="film-card__details-value">{starring.join(', ')}</span>
+          <span className="film-card__details-value">{starringList}</span>
         </p>
       </div>
 

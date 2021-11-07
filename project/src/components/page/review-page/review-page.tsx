@@ -7,6 +7,7 @@ import {useParams} from 'react-router-dom';
 import {Params} from '../../../types/types';
 import Breadcrumbs from '../../breadcrumbs/breadcrumbs';
 import ReviewForm from '../../review-form/review-form';
+import FilmCardPoster from '../../film-card-poster/film-card-poster';
 
 type ReviewPageProps = {
   films: Film[];
@@ -35,9 +36,7 @@ function ReviewPage({films}: ReviewPageProps): JSX.Element {
           <UserBlock />
         </header>
 
-        <div className="film-card__poster film-card__poster--small">
-          <img src={posterImage} alt={name} width="218" height="327" />
-        </div>
+        <FilmCardPoster posterImage={posterImage} name={name}/>
       </div>
 
       <ReviewForm />

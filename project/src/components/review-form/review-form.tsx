@@ -1,4 +1,4 @@
-import React, {ChangeEvent, Fragment, useState} from 'react';
+import React, {ChangeEvent, FormEvent, Fragment, useState} from 'react';
 import {INIT_COMMENT, INIT_RATING, MAX_RATING} from '../../const';
 
 function ReviewForm(): JSX.Element {
@@ -14,9 +14,15 @@ function ReviewForm(): JSX.Element {
     setComment(evt.currentTarget.value);
   };
 
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    setRating(INIT_RATING);
+    setComment(INIT_COMMENT);
+  };
+
   return (
     <div className="add-review">
-      <form action="#" className="add-review__form">
+      <form action="#" className="add-review__form" onSubmit={handleFormSubmit}>
 
         <div className="rating">
           <div className="rating__stars">

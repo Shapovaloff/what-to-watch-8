@@ -1,8 +1,9 @@
 import Logo from '../logo/logo';
 import React from 'react';
 import {Film} from '../../types/film';
-import {useHistory} from 'react-router-dom';
 import UserBlock from '../user-block/user-block';
+import FilmCardBg from '../film-card-bg/film-card-bg';
+import FilmCardButtons from '../film-card-buttons/film-card-buttons';
 
 type FilmCardMainProps = {
   film: Film;
@@ -10,23 +11,15 @@ type FilmCardMainProps = {
 
 function FilmCardMain({film}: FilmCardMainProps): JSX.Element {
   const {backgroundImage, posterImage, name, genre, released, id, isFavorite} = film;
-  const history = useHistory();
-
-  const clickPlayBtnHandler = () => {
-    history.push(`/player/${id}`);
-  };
 
   return (
     <section className="film-card">
-      <div className="film-card__bg">
-        <img src={backgroundImage} alt="The Grand Budapest Hotel" />
-      </div>
+      <FilmCardBg backgroundImage={backgroundImage} name={name} />
 
       <h1 className="visually-hidden">WTW</h1>
 
       <header className="page-header film-card__head">
         <Logo />
-
         <UserBlock />
       </header>
 
@@ -43,27 +36,7 @@ function FilmCardMain({film}: FilmCardMainProps): JSX.Element {
               <span className="film-card__year">{released}</span>
             </p>
 
-            <div className="film-card__buttons">
-              <button
-                className="btn btn--play film-card__button"
-                type="button"
-                onClick={clickPlayBtnHandler}
-              >
-                <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s"/>
-                </svg>
-                <span>Play</span>
-              </button>
-              <button
-                className="btn btn--list film-card__button"
-                type="button"
-              >
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref={isFavorite ? '#in-list' : '#add'} />
-                </svg>
-                <span>My list</span>
-              </button>
-            </div>
+            <FilmCardButtons isFavorite={isFavorite} id={id} />
           </div>
         </div>
       </div>

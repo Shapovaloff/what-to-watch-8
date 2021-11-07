@@ -9,3 +9,8 @@ export const getTimeToString = (time: number): string => {
 };
 
 export const getDateLocaleString = (date: string): string => new Date(date).toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric'});
+
+export const splitArrayInTwo = <T>(items: T[]): [T[], T[]] => {
+  const middleIndex = Math.ceil(items.length / 2);
+  return [items.slice(0, middleIndex), items.slice(middleIndex)];
+};
