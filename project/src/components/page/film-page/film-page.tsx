@@ -1,7 +1,7 @@
 import Logo from '../../logo/logo';
 import React from 'react';
 import Footer from '../../footer/footer';
-import {useHistory, useParams} from 'react-router-dom';
+import {Link, useHistory, useParams} from 'react-router-dom';
 import {Film} from '../../../types/film';
 import {getFilm} from '../../../utils';
 import CatalogFilmsList from '../../catalog-films-list/catalog-films-list';
@@ -67,7 +67,7 @@ function FilmPage({films, comments}: FilmPageProps): JSX.Element {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                <Link to={`/film/${id}/review`} className="btn film-card__button">Add review</Link>
               </div>
             </div>
           </div>

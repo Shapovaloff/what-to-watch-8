@@ -10,7 +10,7 @@ function FilmReview({review}: FilmReviewProps): JSX.Element {
   const {user, rating, comment, date} = review;
 
   return (
-    <div className="review">
+    <div className="review" style={{borderColor: 'rgba(255,255,255,.3)'}}>
       <blockquote className="review__quote">
         <p className="review__text">{comment}</p>
 

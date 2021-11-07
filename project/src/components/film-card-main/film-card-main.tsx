@@ -9,7 +9,7 @@ type FilmCardMainProps = {
 }
 
 function FilmCardMain({film}: FilmCardMainProps): JSX.Element {
-  const {backgroundImage, posterImage, name, genre, released, id} = film;
+  const {backgroundImage, posterImage, name, genre, released, id, isFavorite} = film;
   const history = useHistory();
 
   const clickPlayBtnHandler = () => {
@@ -59,7 +59,7 @@ function FilmCardMain({film}: FilmCardMainProps): JSX.Element {
                 type="button"
               >
                 <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add" />
+                  <use xlinkHref={isFavorite ? '#in-list' : '#add'} />
                 </svg>
                 <span>My list</span>
               </button>

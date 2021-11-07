@@ -39,8 +39,8 @@ function App({films, comments}: AppProps): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.Review}
-          render={() => <ReviewPage />}
-          authorizationStatus={AuthorizationStatus.NoAuth}
+          render={() => <ReviewPage films={films} />}
+          authorizationStatus={AuthorizationStatus.Auth}
         />
         <Route exact path={AppRoute.Player}>
           <PlayerPage films={films} />
