@@ -10,7 +10,7 @@ type PlayerPageProps = {
 function PlayerPage({films}: PlayerPageProps): JSX.Element {
   const {id} = useParams() as Params;
   const film = getFilm(films, Number(id));
-  const {posterImage} = film;
+  const {posterImage, name} = film;
   const history = useHistory();
 
   const handleButtonClick = () => {
@@ -39,7 +39,7 @@ function PlayerPage({films}: PlayerPageProps): JSX.Element {
             </svg>
             <span>Play</span>
           </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">{name}</div>
 
           <button type="button" className="player__full-screen" >
             <svg viewBox="0 0 27 27" width="27" height="27">

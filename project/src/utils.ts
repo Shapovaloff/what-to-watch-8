@@ -14,3 +14,9 @@ export const splitArrayInTwo = <T>(items: T[]): [T[], T[]] => {
   const middleIndex = Math.ceil(items.length / 2);
   return [items.slice(0, middleIndex), items.slice(middleIndex)];
 };
+
+export const getSimilarFilms = (films: Film[], film: Film, id: number) => {
+  const copyFilms = films.slice();
+  const similarFilms =  copyFilms.filter((filmFilter: Film) => filmFilter.id !== Number(id) && film.genre === filmFilter.genre);
+  return similarFilms.slice(0, 4);
+};

@@ -3,7 +3,7 @@ import React from 'react';
 import Footer from '../../footer/footer';
 import {useParams} from 'react-router-dom';
 import {Film} from '../../../types/film';
-import {getFilm} from '../../../utils';
+import {getFilm, getSimilarFilms} from '../../../utils';
 import CatalogFilmsList from '../../catalog-films-list/catalog-films-list';
 import {Comment} from '../../../types/comment';
 import FilmCardDesc from '../../film-card-desc/film-card-desc';
@@ -21,7 +21,7 @@ type FilmPageProps = {
 function FilmPage({films, comments}: FilmPageProps): JSX.Element {
   const {id} = useParams() as Params;
   const film = getFilm(films, Number(id));
-  const filmsSimilar = films.slice(0, 4);
+  const filmsSimilar = getSimilarFilms(films, film, Number(id));
 
   const {
     posterImage, name, backgroundImage,

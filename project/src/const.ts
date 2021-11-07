@@ -31,3 +31,4 @@ export const Genres = {
 export const MAX_RATING = 10;
 export const INIT_RATING = 0;
 export const INIT_COMMENT = '';
+export const HOVER_DELAY = 1000;
