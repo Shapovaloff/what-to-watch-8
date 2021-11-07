@@ -1,6 +1,6 @@
-import Logo from '../logo/logo';
+import Logo from '../../logo/logo';
 import React from 'react';
-import UserBlock from '../user-block/user-block';
+import UserBlock from '../../user-block/user-block';
 
 function ReviewPage(): JSX.Element {
   return (

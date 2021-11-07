@@ -1,7 +1,7 @@
 import {useHistory, useParams} from 'react-router-dom';
-import {Film} from '../../types/film';
-import {getFilm} from '../../utils';
-import {Params} from '../../types/types';
+import {Film} from '../../../types/film';
+import {getFilm} from '../../../utils';
+import {Params} from '../../../types/types';
 
 type PlayerPageProps = {
   films: Film[];

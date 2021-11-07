@@ -1,6 +1,6 @@
-import Logo from '../logo/logo';
+import Logo from '../../logo/logo';
 import React from 'react';
-import Footer from '../footer/footer';
+import Footer from '../../footer/footer';
 
 function LoginPage(): JSX.Element {
   return (

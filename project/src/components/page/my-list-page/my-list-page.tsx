@@ -1,9 +1,9 @@
-import Logo from '../logo/logo';
+import Logo from '../../logo/logo';
 import React from 'react';
-import Footer from '../footer/footer';
-import UserBlock from '../user-block/user-block';
-import {Film} from '../../types/film';
-import SmallFilmCard from '../small-film-card/small-film-card';
+import Footer from '../../footer/footer';
+import UserBlock from '../../user-block/user-block';
+import {Film} from '../../../types/film';
+import SmallFilmCard from '../../small-film-card/small-film-card';
 
 type MyListPageProps = {
   films: Film[];

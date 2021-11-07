@@ -1,15 +1,15 @@
-import MainPage from '../main-page/main-page';
+import MainPage from '../page/main-page/main-page';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
-import MyListPage from '../my-list-page/my-list-page';
-import LoginPage from '../login-page/login-page';
-import FilmPage from '../film-page/film-page';
-import ReviewPage from '../review-page/review-page';
-import NotFoundPage from '../not-found-page/not-found-page';
+import MyListPage from '../page/my-list-page/my-list-page';
+import LoginPage from '../page/login-page/login-page';
+import FilmPage from '../page/film-page/film-page';
+import ReviewPage from '../page/review-page/review-page';
+import NotFoundPage from '../page/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import {Film} from '../../types/film';
 import {Comment} from '../../types/comment';
-import PlayerPage from '../player-page/player-page';
+import PlayerPage from '../page/player-page/player-page';
 
 type AppProps = {
   films: Film[];

@@ -1,14 +1,14 @@
-import Logo from '../logo/logo';
+import Logo from '../../logo/logo';
 import React from 'react';
-import Footer from '../footer/footer';
-import {useParams} from 'react-router-dom';
-import {Film} from '../../types/film';
-import {getFilm} from '../../utils';
-import CatalogFilmsList from '../catalog-films-list/catalog-films-list';
-import {Comment} from '../../types/comment';
-import FilmCardDesc from '../film-card-desc/film-card-desc';
-import {Params} from '../../types/types';
-import UserBlock from '../user-block/user-block';
+import Footer from '../../footer/footer';
+import {useHistory, useParams} from 'react-router-dom';
+import {Film} from '../../../types/film';
+import {getFilm} from '../../../utils';
+import CatalogFilmsList from '../../catalog-films-list/catalog-films-list';
+import {Comment} from '../../../types/comment';
+import FilmCardDesc from '../../film-card-desc/film-card-desc';
+import {Params} from '../../../types/types';
+import UserBlock from '../../user-block/user-block';
 
 type FilmPageProps = {
   films: Film[];
@@ -19,11 +19,17 @@ function FilmPage({films, comments}: FilmPageProps): JSX.Element {
   const {id} = useParams() as Params;
   const film = getFilm(films, Number(id));
   const filmsSimilar = films.slice(0, 4);
+  const history = useHistory();
 
   const {
     posterImage, name, backgroundImage,
     genre, released, backgroundColor,
+    isFavorite,
   } = film;
+
+  const handleButtonClick = () => {
+    history.push(`/player/${id}`);
+  };
 
   return (
     <>
@@ -37,7 +43,6 @@ function FilmPage({films, comments}: FilmPageProps): JSX.Element {
 
           <header className="page-header film-card__head">
             <Logo />
-
             <UserBlock />
           </header>
 
@@ -50,7 +55,7 @@ function FilmPage({films, comments}: FilmPageProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button className="btn btn--play film-card__button" type="button" onClick={handleButtonClick}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -58,7 +63,7 @@ function FilmPage({films, comments}: FilmPageProps): JSX.Element {
                 </button>
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
+                    <use xlinkHref={isFavorite ? '#in-list' : '#add'}></use>
                   </svg>
                   <span>My list</span>
                 </button>

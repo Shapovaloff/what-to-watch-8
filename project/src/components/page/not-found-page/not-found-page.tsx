@@ -1,8 +1,8 @@
-import Logo from '../logo/logo';
+import Logo from '../../logo/logo';
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const';
-import Footer from '../footer/footer';
+import {AppRoute} from '../../../const';
+import Footer from '../../footer/footer';
 
 function NotFoundPage(): JSX.Element {
   return (
