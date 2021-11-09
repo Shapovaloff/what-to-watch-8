@@ -1,4 +1,4 @@
-import {films} from '../moks/films'
+import {films} from '../moks/films';
 import {comments} from '../moks/comments';
 import {State} from '../types/state';
 import {Genres} from '../const';

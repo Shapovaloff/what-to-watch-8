@@ -1,13 +1,30 @@
-import React, {SyntheticEvent, useState} from 'react';
+import React, {Dispatch, SyntheticEvent} from 'react';
 import {Genres} from '../../const';
+import {Actions} from '../../types/action';
+import {changeFilter} from '../../store/action';
+import {connect, ConnectedProps} from 'react-redux';
+import {State} from '../../types/state';
 
-function CatalogGenresList(): JSX.Element {
-  const [activeGenre, setActiveGenre] = useState(Genres.ALL);
+const mapStateToProps = ({activeGenre}: State) => ({
+  activeGenre,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
+  onChangeFilter(genre: string) {
+    dispatch(changeFilter(genre));
+  },
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function CatalogGenresList({activeGenre, onChangeFilter}: PropsFromRedux): JSX.Element {
   const genres = Object.values(Genres);
 
   const clickHandler = (evt: SyntheticEvent<HTMLElement>, genre: string) => {
     evt.preventDefault();
-    setActiveGenre(genre);
+    onChangeFilter(genre);
   };
 
   return (
@@ -29,4 +46,5 @@ function CatalogGenresList(): JSX.Element {
   );
 }
 
-export default CatalogGenresList;
+export {CatalogGenresList};
+export default connector(CatalogGenresList);

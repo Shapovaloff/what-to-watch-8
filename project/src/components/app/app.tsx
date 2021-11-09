@@ -17,12 +17,11 @@ type AppProps = {
 }
 
 function App({films, comments}: AppProps): JSX.Element {
-
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Root}>
-          <MainPage films={films} />
+          <MainPage />
         </Route>
         <PrivateRoute
           exact
