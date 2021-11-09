@@ -15,18 +15,7 @@ export enum AuthorizationStatus {
 
 export const cardNav = ['Overview', 'Details', 'Reviews'];
 
-export const Genres = {
-  ALL: 'All genres',
-  COMEDIES: 'Comedies',
-  CRIME: 'Crime',
-  DOCUMENTARY: 'Documentary',
-  DRAMS: 'Dramas',
-  HORROR: 'Horror',
-  KIDS: 'Kids & Family',
-  ROMANCE: 'Romance',
-  SCI_FI: 'Sci-Fi',
-  THRILLERS: 'Thrillers',
-};
+export const ALL_GENRES = 'All genres';
 
 export const MAX_RATING = 10;
 export const INIT_RATING = 0;

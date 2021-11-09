@@ -1,13 +1,13 @@
 import {films} from '../moks/films';
 import {comments} from '../moks/comments';
 import {State} from '../types/state';
-import {Genres} from '../const';
+import {ALL_GENRES} from '../const';
 import {Actions, ActionType} from '../types/action';
 
 const initialState = {
   films,
   comments,
-  activeGenre: Genres.ALL,
+  activeGenre: ALL_GENRES,
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {

@@ -1,4 +1,5 @@
 import {Film} from './types/film';
+import {ALL_GENRES} from './const';
 
 export const getFilm = (films: Film[], id: number): any => films.slice().find((film: Film) => film.id === id);
 
@@ -19,4 +20,24 @@ export const getSimilarFilms = (films: Film[], film: Film, id: number) => {
   const copyFilms = films.slice();
   const similarFilms =  copyFilms.filter((filmFilter: Film) => filmFilter.id !== Number(id) && film.genre === filmFilter.genre);
   return similarFilms.slice(0, 4);
+};
+
+export const filterFilmsGenre = (films: Film[], genre: string): Film[] => {
+  if (!genre || genre.toLowerCase() === ALL_GENRES.toLowerCase()) {
+    return films;
+  }
+
+  const filterFilms = films.slice().filter((film: Film) => film.genre.toLowerCase() === genre.toLowerCase());
+  return filterFilms;
+};
+
+export const getGenreFilms = (films: Film[]): Array<string> => {
+  if (!films.length) {
+    return [];
+  }
+
+  const genre = new Set<string>();
+  films.forEach((film: Film) => genre.add(film.genre));
+
+  return [ALL_GENRES, ...Array.from(genre).slice(0, 9)];
 };

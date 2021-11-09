@@ -1,12 +1,12 @@
 import React, {Dispatch, SyntheticEvent} from 'react';
-import {Genres} from '../../const';
 import {Actions} from '../../types/action';
 import {changeFilter} from '../../store/action';
 import {connect, ConnectedProps} from 'react-redux';
 import {State} from '../../types/state';
+import {getGenreFilms} from '../../utils';
 
-const mapStateToProps = ({activeGenre}: State) => ({
-  activeGenre,
+const mapStateToProps = ({activeGenre, films}: State) => ({
+  activeGenre, films,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
@@ -19,8 +19,8 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-function CatalogGenresList({activeGenre, onChangeFilter}: PropsFromRedux): JSX.Element {
-  const genres = Object.values(Genres);
+function CatalogGenresList({activeGenre, films, onChangeFilter}: PropsFromRedux): JSX.Element {
+  const genres = getGenreFilms(films);
 
   const clickHandler = (evt: SyntheticEvent<HTMLElement>, genre: string) => {
     evt.preventDefault();
