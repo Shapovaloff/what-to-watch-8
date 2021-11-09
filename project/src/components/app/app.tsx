@@ -7,16 +7,9 @@ import FilmPage from '../page/film-page/film-page';
 import ReviewPage from '../page/review-page/review-page';
 import NotFoundPage from '../page/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
-import {Film} from '../../types/film';
-import {Comment} from '../../types/comment';
 import PlayerPage from '../page/player-page/player-page';
 
-type AppProps = {
-  films: Film[];
-  comments: Comment[];
-}
-
-function App({films, comments}: AppProps): JSX.Element {
+function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
@@ -26,23 +19,23 @@ function App({films, comments}: AppProps): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.MyList}
-          render={() => <MyListPage films={films} />}
+          render={() => <MyListPage />}
           authorizationStatus={AuthorizationStatus.Auth}
         />
         <Route exact path={AppRoute.Login}>
           <LoginPage />
         </Route>
         <Route exact path={AppRoute.Film}>
-          <FilmPage films={films} comments={comments}/>
+          <FilmPage />
         </Route>
         <PrivateRoute
           exact
           path={AppRoute.Review}
-          render={() => <ReviewPage films={films} />}
+          render={() => <ReviewPage />}
           authorizationStatus={AuthorizationStatus.Auth}
         />
         <Route exact path={AppRoute.Player}>
-          <PlayerPage films={films} />
+          <PlayerPage />
         </Route>
         <Route>
           <NotFoundPage />

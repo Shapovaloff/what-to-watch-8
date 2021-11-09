@@ -1,13 +1,18 @@
 import {useHistory, useParams} from 'react-router-dom';
-import {Film} from '../../../types/film';
 import {getFilm} from '../../../utils';
 import {Params} from '../../../types/types';
+import {connect, ConnectedProps} from 'react-redux';
+import {State} from '../../../types/state';
 
-type PlayerPageProps = {
-  films: Film[];
-}
+const mapStateToProps = ({films}: State) => ({
+  films,
+});
 
-function PlayerPage({films}: PlayerPageProps): JSX.Element {
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function PlayerPage({films}: PropsFromRedux): JSX.Element {
   const {id} = useParams() as Params;
   const film = getFilm(films, Number(id));
   const {posterImage, name} = film;
@@ -53,4 +58,5 @@ function PlayerPage({films}: PlayerPageProps): JSX.Element {
   );
 }
 
-export default PlayerPage;
+export {PlayerPage};
+export default connector(PlayerPage);

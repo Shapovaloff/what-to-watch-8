@@ -2,14 +2,19 @@ import Logo from '../../logo/logo';
 import React from 'react';
 import Footer from '../../footer/footer';
 import UserBlock from '../../user-block/user-block';
-import {Film} from '../../../types/film';
 import CatalogFilmsList from '../../catalog-films-list/catalog-films-list';
+import {State} from '../../../types/state';
+import {connect, ConnectedProps} from 'react-redux';
 
-type MyListPageProps = {
-  films: Film[];
-}
+const mapStateToProps = ({films}: State) => ({
+  films,
+});
 
-function MyListPage({films}: MyListPageProps): JSX.Element {
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function MyListPage({films}: PropsFromRedux): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -29,4 +34,5 @@ function MyListPage({films}: MyListPageProps): JSX.Element {
   );
 }
 
-export default MyListPage;
+export {MyListPage};
+export default connector(MyListPage);

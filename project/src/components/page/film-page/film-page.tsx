@@ -2,23 +2,26 @@ import Logo from '../../logo/logo';
 import React from 'react';
 import Footer from '../../footer/footer';
 import {useParams} from 'react-router-dom';
-import {Film} from '../../../types/film';
 import {getFilm, getSimilarFilms} from '../../../utils';
 import CatalogFilmsList from '../../catalog-films-list/catalog-films-list';
-import {Comment} from '../../../types/comment';
 import FilmCardDesc from '../../film-card-desc/film-card-desc';
 import {Params} from '../../../types/types';
 import UserBlock from '../../user-block/user-block';
 import FilmCardBg from '../../film-card-bg/film-card-bg';
 import FilmCardButtons from '../../film-card-buttons/film-card-buttons';
 import FilmCardPoster from '../../film-card-poster/film-card-poster';
+import {State} from '../../../types/state';
+import {connect, ConnectedProps} from 'react-redux';
 
-type FilmPageProps = {
-  films: Film[];
-  comments: Comment[];
-}
+const mapStateToProps = ({films, comments}: State) => ({
+  films, comments,
+});
 
-function FilmPage({films, comments}: FilmPageProps): JSX.Element {
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function FilmPage({films, comments}: PropsFromRedux): JSX.Element {
   const {id} = useParams() as Params;
   const film = getFilm(films, Number(id));
   const filmsSimilar = getSimilarFilms(films, film, Number(id));
@@ -74,4 +77,5 @@ function FilmPage({films, comments}: FilmPageProps): JSX.Element {
   );
 }
 
-export default FilmPage;
+export {FilmPage};
+export default connector(FilmPage);

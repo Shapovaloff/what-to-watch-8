@@ -1,19 +1,24 @@
 import Logo from '../../logo/logo';
 import React from 'react';
 import UserBlock from '../../user-block/user-block';
-import {Film} from '../../../types/film';
 import {getFilm} from '../../../utils';
 import {useParams} from 'react-router-dom';
 import {Params} from '../../../types/types';
 import Breadcrumbs from '../../breadcrumbs/breadcrumbs';
 import ReviewForm from '../../review-form/review-form';
 import FilmCardPoster from '../../film-card-poster/film-card-poster';
+import {State} from '../../../types/state';
+import {connect, ConnectedProps} from 'react-redux';
 
-type ReviewPageProps = {
-  films: Film[];
-}
+const mapStateToProps = ({films}: State) => ({
+  films,
+});
 
-function ReviewPage({films}: ReviewPageProps): JSX.Element {
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function ReviewPage({films}: PropsFromRedux): JSX.Element {
   const {id} = useParams() as Params;
   const film = getFilm(films, Number(id));
   const {
@@ -44,4 +49,5 @@ function ReviewPage({films}: ReviewPageProps): JSX.Element {
   );
 }
 
-export default ReviewPage;
+export {ReviewPage};
+export default connector(ReviewPage);
