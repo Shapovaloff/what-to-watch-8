@@ -59,7 +59,7 @@ function FilmPage({films, comments}: PropsFromRedux): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <FilmCardPoster posterImage={posterImage} name={name} posterSize={'big'} />
-            <FilmCardDesc film={film} comments={comments} />
+            <FilmCardDesc film={film}/>
           </div>
         </div>
       </section>

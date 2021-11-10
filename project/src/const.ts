@@ -13,6 +13,12 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export enum CardDescrNav {
+  Overview = 'Overview',
+  Details = 'Details',
+  Reviews = 'Reviews',
+}
+
 export const cardNav = ['Overview', 'Details', 'Reviews'];
 
 export const ALL_GENRES = 'All genres';
