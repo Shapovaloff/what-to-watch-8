@@ -1,11 +1,11 @@
-import {ActionType, ChangeFilterAction, ChangeNavDescAction} from '../types/action';
+import {ActionType} from '../types/action';
 
-export const changeFilter = (genre: string): ChangeFilterAction => ({
+export const changeFilter = (genre: string) => ({
   type: ActionType.ChangeFilter,
   payload: genre,
-});
+} as const);
 
-export const changeNavDesc = (navItem: string): ChangeNavDescAction => ({
+export const changeNavDesc = (navItem: string) => ({
   type: ActionType.ChangeNavDesc,
   payload: navItem,
-});
+} as const);

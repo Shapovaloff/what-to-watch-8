@@ -31,15 +31,14 @@ function CatalogGenresList({activeGenre, films, onChangeFilter}: PropsFromRedux)
     <ul className="catalog__genres-list">
       {genres.map((genre) => (
         <li key={genre} className={`catalog__genres-item ${genre === activeGenre && 'catalog__genres-item--active'}`}>
-          <a
-            href="#"
+          <span
             className="catalog__genres-link"
             onClick={(evt: SyntheticEvent<HTMLElement>) => {
               clickHandler(evt, genre);
             }}
           >
             {genre}
-          </a>
+          </span>
         </li>
       ))}
     </ul>

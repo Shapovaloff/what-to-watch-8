@@ -12,8 +12,7 @@ function FilmCardNav({navItemDesc, changeDescNav}: FilmCardNavProps): JSX.Elemen
       <ul className="film-nav__list">
         {cardNav.map((item) => (
           <li key={item} className={`film-nav__item ${navItemDesc === item && 'film-nav__item--active'}`}>
-            <a
-              href="#"
+            <span
               onClick={(evt: SyntheticEvent<HTMLElement>) => {
                 evt.preventDefault();
                 changeDescNav(item);
@@ -21,7 +20,7 @@ function FilmCardNav({navItemDesc, changeDescNav}: FilmCardNavProps): JSX.Elemen
               className="film-nav__link"
             >
               {item}
-            </a>
+            </span>
           </li>
         ))}
       </ul>

@@ -13,15 +13,15 @@ import FilmCardPoster from '../../film-card-poster/film-card-poster';
 import {State} from '../../../types/state';
 import {connect, ConnectedProps} from 'react-redux';
 
-const mapStateToProps = ({films, comments}: State) => ({
-  films, comments,
+const mapStateToProps = ({films}: State) => ({
+  films,
 });
 
 const connector = connect(mapStateToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-function FilmPage({films, comments}: PropsFromRedux): JSX.Element {
+function FilmPage({films}: PropsFromRedux): JSX.Element {
   const {id} = useParams() as Params;
   const film = getFilm(films, Number(id));
   const filmsSimilar = getSimilarFilms(films, film, Number(id));
