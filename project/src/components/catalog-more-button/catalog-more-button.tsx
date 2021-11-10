@@ -1,9 +1,13 @@
 import React from 'react';
 
-function CatalogMoreButton(): JSX.Element {
+type CatalogMoreButtonProps = {
+  addCardFilm: () => void;
+}
+
+function CatalogMoreButton({addCardFilm}: CatalogMoreButtonProps): JSX.Element {
   return (
     <div className="catalog__more">
-      <button className="catalog__button" type="button">Show more</button>
+      <button className="catalog__button" onClick={addCardFilm} type="button">Show more</button>
     </div>
   );
 }
